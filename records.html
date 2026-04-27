@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stupify — Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="left-nav">
+        <div class="logo">Stupify <span>DB</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="records.html" class="active">Records</a></li>
+            <li><a href="add.html">Add Product</a></li>
+            <li><a href="ReadMe.html">Read Me</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Tables ▾</button>
+        <div class="dropdown-content">
+            <a href="home.html">Home</a>
+            <a href="records.html">Records</a>
+            <a href="add.html">Add Product</a>
+            <a href="ReadMe.html">About</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== PAGE HEADER ===== -->
+<div class="page-header">
+    <h1>Product Records</h1>
+    <p>Browse, search, and filter all products in the database.</p>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <!-- Search -->
+    <form method="GET" class="search-bar">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by product name..."
+            value="{{ request.args.get('search', '') }}"
+        >
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in products %}
+                <tr>
+                    <td class="id">#{{ p[0] }}</td>
+                    <td>{{ p[1] }}</td>
+                    <td>{{ p[2] if p[2] else '—' }}</td>
+                    <td class="price">${{ "%.2f"|format(p[3]) }}</td>
+                    <td>{{ p[4] }}</td>
+                    <td>
+                        {% if p[4] > 0 %}
+                            <span class="badge badge-green">In Stock</span>
+                        {% else %}
+                            <span class="badge badge-red">Out of Stock</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align:center; color: var(--text-muted); padding: 40px;">
+                        No products found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <span class="logo-sm">Stupify</span>
+    <p>Group 3 &mdash; Noor &middot; Zainab &middot; Zoha &middot; Ayesha &mdash; Designing a Database</p>
+</footer>
+
+</body>
+</html>

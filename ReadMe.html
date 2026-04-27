@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stupify — Read Me</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="left-nav">
+        <div class="logo">Stupify <span>DB</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="records.html">Records</a></li>
+            <li><a href="add.html">Add Product</a></li>
+            <li><a href="ReadMe.html" class="active">Read Me</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">Tables ▾</button>
+        <div class="dropdown-content">
+            <a href="home.html">Home</a>
+            <a href="records.html">Records</a>
+            <a href="add.html">Add Product</a>
+            <a href="ReadMe.html">About</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== LAYOUT ===== -->
+<div class="readme-layout">
+
+    <!-- Sidebar TOC -->
+    <aside class="readme-sidebar">
+        <h3>Contents</h3>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#schema">Database Schema</a></li>
+            <li><a href="#pages">Pages</a></li>
+            <li><a href="#setup">How to Run</a></li>
+            <li><a href="#tech">Tech Stack</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main class="readme-content">
+
+        <h2 id="overview">Overview</h2>
+        <p>
+            <strong style="color:var(--text)">Stupify</strong> is a database management web application
+            designed as the front end for a simplified Shopify-style e-commerce store. It provides a
+            clean interface to view, search, and manage product records stored in a MySQL database,
+            served locally through a Python Flask backend.
+        </p>
+        <p>
+            The project was built as part of a university database design assignment. All queries
+            run live against a relational database structured around a realistic retail schema.
+        </p>
+
+        <h2 id="team">Team</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="name">Noor</div>
+                <div class="role">Group 3</div>
+            </div>
+            <div class="team-card">
+                <div class="name">Zainab</div>
+                <div class="role">Group 3</div>
+            </div>
+            <div class="team-card">
+                <div class="name">Zoha</div>
+                <div class="role">Group 3</div>
+            </div>
+            <div class="team-card">
+                <div class="name">Ayesha</div>
+                <div class="role">Group 3</div>
+            </div>
+        </div>
+
+        <h2 id="schema">Database Schema</h2>
+        <p>The database consists of 9 tables modelling a complete e-commerce system:</p>
+        <ul>
+            <li><code>CUSTOMER</code> — customer profiles (name, phone, email)</li>
+            <li><code>ADDRESS</code> — customer shipping addresses</li>
+            <li><code>POSTALCODE</code> — city/country lookup by postal code</li>
+            <li><code>PRODUCT</code> — products with price, stock, and category</li>
+            <li><code>CATEGORY</code> — product categories</li>
+            <li><code>CART</code> &amp; <code>CART ITEM</code> — shopping cart sessions</li>
+            <li><code>ORDER</code> &amp; <code>ORDER ITEM</code> — placed orders and line items</li>
+            <li><code>PAYMENT</code> — payment records linked to orders</li>
+            <li><code>SHIPPING METHOD</code> — available shipping options</li>
+            <li><code>REVIEW</code> — customer reviews on products</li>
+        </ul>
+
+        <h2 id="pages">Pages</h2>
+        <ul>
+            <li><strong style="color:var(--text)">Home</strong> — overview, hero section, and ERD diagram</li>
+            <li><strong style="color:var(--text)">Records</strong> — searchable product table pulled live from MySQL</li>
+            <li><strong style="color:var(--text)">Add Product</strong> — form to insert a new product into the database</li>
+            <li><strong style="color:var(--text)">Read Me</strong> — this documentation page</li>
+        </ul>
+
+        <h2 id="setup">How to Run</h2>
+        <p>Make sure you have Python and MySQL installed, then follow these steps:</p>
+        <pre><code># 1. Install dependencies
+pip install flask mysql-connector-python
+
+# 2. Set your DB credentials in app.py
+#    host, user, password, database
+
+# 3. Place HTML files in /templates
+#    Place style.css and ERD Diagram.png in /static
+
+# 4. Start the server
+python app.py
+
+# 5. Open your browser
+#    http://localhost:5000</code></pre>
+
+        <h2 id="tech">Tech Stack</h2>
+        <ul>
+            <li><code>HTML5</code> &amp; <code>CSS3</code> — front end structure and styling</li>
+            <li><code>Python 3</code> with <code>Flask</code> — server-side routing and templating</li>
+            <li><code>Jinja2</code> — template engine for dynamic data rendering</li>
+            <li><code>MySQL</code> with <code>mysql-connector-python</code> — database layer</li>
+        </ul>
+
+    </main>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <span class="logo-sm">Stupify</span>
+    <p>Group 3 &mdash; Noor &middot; Zainab &middot; Zoha &middot; Ayesha &mdash; Designing a Database</p>
+</footer>
+
+</body>
+</html>
