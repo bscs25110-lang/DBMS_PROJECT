@@ -13,7 +13,7 @@ import os
 from urllib.parse import urlparse
 
 # Parse Railway's MYSQL_URL
-mysql_url = os.getenv('MYSQL_URL', 'mysql://root:password@localhost:3306/stupify')
+mysql_url = os.getenv('MYSQL_URL', 'mysql://root:miHObTyrvWuaZOgsCJjyKOlSUSYgMJcY@shortline.proxy.rlwy.net:58203/railway')   
 parsed = urlparse(mysql_url)
 
 DB_CONFIG = {
