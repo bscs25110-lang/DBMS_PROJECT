@@ -13,7 +13,7 @@ import os
 from urllib.parse import urlparse
 
 # Parse Railway's MYSQL_URL
-mysql_url = os.getenv('MYSQL_URL', 'mysql://root:miHObTyrvWuaZOgsCJjyKOlSUSYgMJcY@shortline.proxy.rlwy.net:58203/railway')   
+mysql_url = os.getenv('MYSQL_URL')
 parsed = urlparse(mysql_url)
 
 DB_CONFIG = {
@@ -111,6 +111,10 @@ def readme():
 #  RUN
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
-  if __name__ == "__main__":
+    try:
+        init_database()
+    except Exception as e:
+        print(f"Warning: Database init failed: {e}")
+    
     port = int(os.getenv('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
