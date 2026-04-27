@@ -6,11 +6,19 @@ app = Flask(__name__)
 # ─────────────────────────────────────────────
 #  DATABASE CONNECTION
 # ─────────────────────────────────────────────
+import os
+from urllib.parse import urlparse
+
+# Parse Railway's MYSQL_URL
+mysql_url = os.getenv('MYSQL_URL', 'mysql://root:password@localhost:3306/stupify')
+parsed = urlparse(mysql_url)
+
 DB_CONFIG = {
-    "host":     "localhost@3306",
-    "user":     "Aisha",          # your MySQL username
-    "password": "1234",  # your MySQL password
-    "database": "stupify"     # your database name
+    "host": parsed.hostname,
+    "port": 3306,
+    "user": parsed.username,
+    "password": parsed.password,
+    "database": parsed.path.lstrip('/')
 }
 
 def get_db():
@@ -100,4 +108,6 @@ def readme():
 #  RUN
 # ─────────────────────────────────────────────
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+  if __name__ == "__main__":
+    port = int(os.getenv('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
