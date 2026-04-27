@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
+from init_db import init_database
 
+# Initialize database on startup
+init_database()
 app = Flask(__name__)
 
 # ─────────────────────────────────────────────
